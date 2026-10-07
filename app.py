@@ -49,7 +49,7 @@ if prompt := st.chat_input("Ej: ¿Cuándo comenzó la ocupación de 1916?"):
     # Búsqueda semántica en ChromaDB
     results = collection.query(
         query_texts=[prompt],
-        n_results=2
+        n_results=4
     )
 
     docs = results["documents"][0] if results and results.get("documents") else []
