@@ -1,4 +1,2 @@
-streamlit
-chromadb
-sentence-transformers
-groq
+streamlit>=1.38.0
+google-generativeai>=0.8.3
