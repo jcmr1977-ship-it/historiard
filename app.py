@@ -99,9 +99,9 @@ if prompt := st.chat_input("Escribe tu pregunta sobre la República Dominicana..
     with st.chat_message("model", avatar="🇩🇴"):
         with st.spinner("Consultando archivos históricos..."):
             try:
-                # Usar el modelo estable actual (ej. gemini-2.5-flash)
+                # Usar el modelo estable actual (ej. gemini-3.8-flash)
                 model = genai.GenerativeModel(
-                    model_name="gemini-2.5-flash",
+                    model_name="gemini-3.8-flash",
                     system_instruction=SYSTEM_PROMPT
                 )
                 
