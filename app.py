@@ -92,7 +92,7 @@ if st.button("Consultar", type="primary"):
                         {"role": "system", "content": SYSTEM_PROMPT},
                         {"role": "user", "content": user_input}
                     ],
-                    model="llama-3.3-70b-versatile",
+                    model="openai/gpt-oss-20b",
                     temperature=0.3
                 )
                 st.session_state.current_response = chat_completion.choices[0].message.content
