@@ -27,7 +27,7 @@ if img_base64:
         <style>
         /* Imagen de fondo en marca de agua fija */
         .stApp {{
-            background-image: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), 
+            background-image: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.40)), 
                               url("data:image/png;base64,{img_base64}");
             background-size: cover;
             background-position: center;
@@ -37,7 +37,7 @@ if img_base64:
         
         /* Fondo translúcido para los contenedores del chat para asegurar excelente legibilidad */
         .stChatMessage {{
-            background-color: rgba(255, 255, 255, 0.85) !important;
+            background-color: rgba(255, 255, 255, 0.60) !important;
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 10px;
