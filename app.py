@@ -34,12 +34,12 @@ Reglas obligatorias:
 3. Proporciona contexto histórico y datos precisos cuando respondas.
 """
 
-# 4. Inicialización del Modelo Gemini (Usando gemini-1.5-flash por velocidad y eficiencia)
+# 4. Inicialización del Modelo Gemini (Usando gemini-3.8-flash por velocidad y eficiencia)
 @st.cache_resource
 def load_gemini_model():
     # Configuramos el modelo con instrucciones de sistema incorporadas en el prompt inicial o rol
     model = genai.GenerativeModel(
-        model_name="gemini-1.5-flash",
+        model_name="gemini-3.8-flash",
         system_instruction=SYSTEM_PROMPT
     )
     return model
