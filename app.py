@@ -117,5 +117,5 @@ if st.session_state.current_response:
     if st.button("🔄 Próxima pregunta", type="secondary"):
         st.session_state.current_question = ""
         st.session_state.current_response = ""
-        st.session_state.input_pregunta = ""
+    #    st.session_state.input_pregunta = ""
         st.rerun()
