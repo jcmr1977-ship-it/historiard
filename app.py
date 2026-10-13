@@ -18,7 +18,7 @@ def get_base64_image(image_path):
     return ""
 
 # Reemplaza 'fondo_marca_agua.png' por el nombre exacto de tu archivo de imagen en el repositorio
-img_base64 = get_base64_image("fondo_marca_agua.png")
+img_base64 = get_base64_image("trinitaria.jpeg")
 
 # 2. Inyección de CSS para la marca de agua y legibilidad
 if img_base64:
@@ -26,7 +26,7 @@ if img_base64:
         f"""
         <style>
         .stApp {{
-            background-image: linear-gradient(rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.70)), 
+            background-image: linear-gradient(rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.40)), 
                               url("data:image/png;base64,{img_base64}");
             background-size: cover;
             background-position: center;
@@ -34,7 +34,7 @@ if img_base64:
             background-attachment: fixed;
         }}
         .custom-box {{
-            background-color: rgba(255, 255, 255, 0.90);
+            background-color: rgba(255, 255, 255, 0.60);
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 15px;
