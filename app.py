@@ -59,7 +59,7 @@ Tu ámbito de conocimiento y respuesta se limita de forma estricta a los siguien
 - Historia política, económica, cultural, popular, académica, sanitaria, deportiva, artística, tecnológica y urbanística.
 
 Reglas obligatorias:
-1. Si la consulta NO está relacionada con la República Dominicana o con las áreas temáticas mencionadas, recházala amablemente indicando tu enfoque exclusivo.
+1. Si la consulta NO está relacionada con la República Dominicana o con las áreas temáticas mencionadas, recházala amablemente en español indicando que solo atiende preguntas relativas al tema.
 2. Mantén un tono académico, riguroso y respetuoso.
 3. Proporciona datos precisos y contexto histórico.
 """
@@ -109,7 +109,7 @@ if st.session_state.current_response:
     
     st.subheader("🇩🇴 Respuesta:")
     st.markdown(f'<div class="custom-box">{st.session_state.current_response}</div>', unsafe_allow_html=True)
-    st.caption("⚡ *Generado mediante Groq (Llama 3.3 70B)*")
+    st.caption("⚡ *Generado mediante Groq (openai/gpt-oss-20b)*")
    
     st.markdown("---")
     
@@ -117,4 +117,5 @@ if st.session_state.current_response:
     if st.button("🔄 Próxima pregunta", type="secondary"):
         st.session_state.current_question = ""
         st.session_state.current_response = ""
+        st.session_state.input_pregunta = ""
         st.rerun()
