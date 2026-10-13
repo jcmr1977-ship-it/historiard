@@ -1,12 +1,3 @@
-# Entorno virtual
-venv/
-.venv/
-env/
-
-# Cache de Python
-__pycache__/
-*.pyc
-
-# Archivos de entorno y claves secretas
 .env
-.streamlit/secrets.toml
+__pycache__/
+.streamlit/
