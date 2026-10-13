@@ -18,7 +18,7 @@ def get_base64_image(image_path):
     return ""
 
 # Reemplaza 'fondo_marca_agua.png' por el nombre exacto de tu archivo de imagen en el repositorio
-img_base64 = get_base64_image("fondo_marca_agua.png")
+img_base64 = get_base64_image("trinitaria.jpeg")
 
 # 2. Inyección de CSS para la marca de agua y legibilidad
 if img_base64:
@@ -26,7 +26,7 @@ if img_base64:
         f"""
         <style>
         .stApp {{
-            background-image: linear-gradient(rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.70)), 
+            background-image: linear-gradient(rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.40)), 
                               url("data:image/png;base64,{img_base64}");
             background-size: cover;
             background-position: center;
@@ -34,7 +34,7 @@ if img_base64:
             background-attachment: fixed;
         }}
         .custom-box {{
-            background-color: rgba(255, 255, 255, 0.90);
+            background-color: rgba(255, 255, 255, 0.60);
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 15px;
@@ -69,61 +69,61 @@ Reglas obligatorias:
 3. Proporciona datos precisos y contexto histórico.
 """
 
-# 5. Inicialización de Estados en Session State para manejar la pregunta única
+# 5. Inicialización de Estados en Session State
 if "current_question" not in st.session_state:
     st.session_state.current_question = ""
 if "current_response" not in st.session_state:
     st.session_state.current_response = ""
 
-# Interfaz Principal
+# --- ORDEN VISUAL SOLICITADO ---
+
+# A. TÍTULO PRINCIPAL
 st.title("🇩🇴 Asistente Histórico y Cultural de la República Dominicana")
-st.markdown("Consulta un tema a la vez. Cada consulta se procesa de forma independiente para cuidar tus tokens.")
 
-# Botón de "Próxima pregunta" (Limpia los estados actuales)
-if st.button("🔄 Próxima pregunta / Limpiar pantalla", type="secondary"):
-    st.session_state.current_question = ""
-    st.session_state.current_response = ""
-    st.rerun()
+# B. SUBTÍTULO
+st.markdown("Consulta un tema a la vez sobre historia, economía, cultura, deporte, urbanismo y más. Cada consulta se procesa de forma independiente.")
 
-# Campo de entrada de texto para la pregunta
-user_input = st.text_input("Escribe tu pregunta sobre la República Dominicana:", value="")
+# C. CAJA DE TEXTO DE LA PREGUNTA
+user_input = st.text_input("Escribe tu pregunta sobre la República Dominicana:", value="", key="input_pregunta")
 
-if st.button("Enviar consulta", type="primary"):
+if st.button("Consultar", type="primary"):
     if user_input.strip():
         st.session_state.current_question = user_input
         with st.spinner("Consultando archivos históricos..."):
             try:
-                # Usamos el modelo estable actual
                 model = genai.GenerativeModel(
-                    model_name="gemini-2.5-flash",
+                    model_name="gemini-3.8-flash",
                     system_instruction=SYSTEM_PROMPT
                 )
-                
-                # Al no pasar historial previo, cada pregunta consume el mínimo absoluto de tokens
                 response = model.generate_content(user_input)
                 st.session_state.current_response = response.text
             except Exception as e:
                 st.session_state.current_response = f"❌ Ocurrió un error al procesar tu solicitud: {e}"
     else:
-        st.warning("Por favor, escribe una pregunta antes de enviar.")
+        st.warning("Por favor, escribe una pregunta antes de consultar.")
 
-# 6. Mostrar resultados si existen, junto con herramientas para copiar
-if st.session_state.current_question and st.session_state.current_response:
+# D. RESPUESTA ABAJO (Si ya fue consultada)
+if st.session_state.current_response:
     st.markdown("---")
-    
-    # Sección de la Pregunta con opción de copiar (Streamlit 1.39+ incluye copy_button o mostramos el bloque)
-    st.subheader("📌 Tu Pregunta:")
+    st.subheader("📌 Pregunta realizada:")
     st.markdown(f'<div class="custom-box"><b>{st.session_state.current_question}</b></div>', unsafe_allow_html=True)
     
-    # Sección de la Respuesta
-    st.subheader("🇩🇴 Respuesta Histórica:")
+    st.subheader("🇩🇴 Respuesta:")
     st.markdown(f'<div class="custom-box">{st.session_state.current_response}</div>', unsafe_allow_html=True)
     
-    # Botones nativos de copia al portapapeles integrados en Streamlit
+    # Bloques para copiar fácilmente al portapapeles
     col1, col2 = st.columns(2)
     with col1:
         st.code(st.session_state.current_question, language="text")
-        st.caption("👆 Puedes copiar el texto de arriba (Pregunta)")
+        st.caption("👆 Copiar pregunta")
     with col2:
         st.code(st.session_state.current_response, language="text")
-        st.caption("👆 Puedes copiar el texto de arriba (Respuesta)")
+        st.caption("👆 Copiar respuesta")
+
+    st.markdown("---")
+    
+    # E. BOTÓN DE PRÓXIMA PREGUNTA (Abajo de todo)
+    if st.button("🔄 Próxima pregunta", type="secondary"):
+        st.session_state.current_question = ""
+        st.session_state.current_response = ""
+        st.rerun()
