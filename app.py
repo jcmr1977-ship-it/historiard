@@ -109,7 +109,7 @@ if st.session_state.current_response:
     
     st.subheader("🇩🇴 Respuesta:")
     st.markdown(f'<div class="custom-box">{st.session_state.current_response}</div>', unsafe_allow_html=True)
-    st.caption("⚡ *Generado mediante Groq (openai/gpt-oss-20b)*")
+    st.caption("⚡ Estos es una IA y puede cometer errores. *Generado mediante Groq (openai/gpt-oss-20b)*")
    
     st.markdown("---")
     
