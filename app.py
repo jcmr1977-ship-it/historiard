@@ -110,16 +110,7 @@ if st.session_state.current_response:
     st.subheader("🇩🇴 Respuesta:")
     st.markdown(f'<div class="custom-box">{st.session_state.current_response}</div>', unsafe_allow_html=True)
     st.caption("⚡ *Generado mediante Groq (Llama 3.3 70B)*")
-    
-    # Bloques para copiar fácilmente al portapapeles
-    col1, col2 = st.columns(2)
-    with col1:
-        st.code(st.session_state.current_question, language="text")
-        st.caption("👆 Copiar pregunta")
-    with col2:
-        st.code(st.session_state.current_response, language="text")
-        st.caption("👆 Copiar respuesta")
-
+   
     st.markdown("---")
     
     # E. BOTÓN DE PRÓXIMA PREGUNTA (Abajo de todo)
