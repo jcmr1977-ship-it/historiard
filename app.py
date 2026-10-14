@@ -17,7 +17,7 @@ GOOGLE_ANALYTICS_ID = "G-YCZN022HR5"
 ga_head_injection = f"""
 <script>
 (function() {
-    # Evita duplicar el script si ya fue inyectado
+    // Evita duplicar el script si ya fue inyectado
     if (!document.getElementById('ga-gtag')) {
         var script1 = document.createElement('script');
         script1.id = 'ga-gtag';
