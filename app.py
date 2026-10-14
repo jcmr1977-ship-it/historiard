@@ -11,23 +11,18 @@ st.set_page_config(
     layout="centered"
 )
 # Código de mediciones para Google Analytics, 
-def inject_ga():
-    ga_code = """
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YCZN022HR5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+ga_script = """
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YCZN022HR5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'G-YCZN022HR5');
-    </script>
-    """
-    # Inyectamos el código HTML/JS de forma invisible (altura 0)
-    components.html(ga_code, height=0, width=0)
+  gtag('config', 'G-YCZN022HR5');
+</script>
+"""
 
-# Llamamos a la función de análisis
-inject_ga()
+st.markdown(ga_script, unsafe_allow_html=True)
 
 # Función para convertir la imagen local a Base64 y usarla en CSS
 def get_base64_image(image_path):
