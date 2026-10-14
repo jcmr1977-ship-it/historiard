@@ -17,7 +17,7 @@ GOOGLE_ANALYTICS_ID = "G-YCZN022HR5"
 ga_head_injection = f"""
 <script>
 (function() {
-    // Evita duplicar el script si ya fue inyectado
+    # Evita duplicar el script si ya fue inyectado
     if (!document.getElementById('ga-gtag')) {
         var script1 = document.createElement('script');
         script1.id = 'ga-gtag';
@@ -39,6 +39,8 @@ ga_head_injection = f"""
 """
 
 st.markdown(ga_head_injection, unsafe_allow_html=True)
+
+#------------------------------------------------------------------
 # Función para convertir la imagen local a Base64 y usarla en CSS
 def get_base64_image(image_path):
     if os.path.exists(image_path):
