@@ -22,7 +22,7 @@ ga_script = """
 </script>
 """
 
-st.markdown(ga_script, unsafe_allow_html=True)
+st.markdown(ga_script, unsafe_allow_html=False)
 
 # Función para convertir la imagen local a Base64 y usarla en CSS
 def get_base64_image(image_path):
