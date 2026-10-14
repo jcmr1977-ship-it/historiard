@@ -10,19 +10,24 @@ st.set_page_config(
     page_icon="🇩🇴",
     layout="centered"
 )
-# Código de mediciones para Google Analytics, 
-ga_script = """
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YCZN022HR5"></script>
+
+# --- GOOGLE ANALYTICS ---
+GOOGLE_ANALYTICS_ID = "G-YCZN022HR5" # Reemplaza o deja tu ID directo
+
+ga_script = f"""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GOOGLE_ANALYTICS_ID}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
 
-  gtag('config', 'G-YCZN022HR5');
+  gtag('config', '{GOOGLE_ANALYTICS_ID}');
 </script>
 """
-
+# Inyección directa del código en la app principal para que GA lo detecte
 st.markdown(ga_script, unsafe_allow_html=True)
+# ------------------------
 
 # Función para convertir la imagen local a Base64 y usarla en CSS
 def get_base64_image(image_path):
