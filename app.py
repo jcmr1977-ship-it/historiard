@@ -2,6 +2,8 @@ import os
 import base64
 import streamlit as st
 from groq import Groq
+import streamlit as st
+import streamlit.components.v1 as components
 
 # 1. Configuración de la Página de Streamlit
 st.set_page_config(
@@ -9,6 +11,24 @@ st.set_page_config(
     page_icon="🇩🇴",
     layout="centered"
 )
+# Código de mediciones para Google Analytics, 
+def inject_ga():
+    ga_code = """
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YCZN022HR5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YCZN022HR5');
+    </script>
+    """
+    # Inyectamos el código HTML/JS de forma invisible (altura 0)
+    components.html(ga_code, height=0, width=0)
+
+# Llamamos a la función de análisis
+inject_ga()
 
 # Función para convertir la imagen local a Base64 y usarla en CSS
 def get_base64_image(image_path):
