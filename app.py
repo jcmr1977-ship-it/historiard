@@ -14,31 +14,33 @@ st.set_page_config(
 # --- GOOGLE ANALYTICS (INYECCIÓN EN EL HEAD REAL) ---
 GOOGLE_ANALYTICS_ID = "G-YCZN022HR5"
 
-ga_head_injection = f"""
-<script>
-(function() {{
-    // Evita duplicar el script si ya fue inyectado
-    if (!document.getElementById('ga-gtag')) {{
-        var script1 = document.createElement('script');
-        script1.id = 'ga-gtag';
-        script1.async = true;
-        script1.src = 'https://www.googletagmanager.com/gtag/js?id={GOOGLE_ANALYTICS_ID}';
-        document.head.appendChild(script1);
+components.html(
+    f"""
+    <script>
+    (function() {{
+        var parentDoc = window.parent.document;
+        if (!parentDoc.getElementById('ga-gtag')) {{
+            var script1 = parentDoc.createElement('script');
+            script1.id = 'ga-gtag';
+            script1.async = true;
+            script1.src = 'https://www.googletagmanager.com/gtag/js?id={GOOGLE_ANALYTICS_ID}';
+            parentDoc.head.appendChild(script1);
 
-        var script2 = document.createElement('script');
-        script2.innerHTML = `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){{dataLayer.push(arguments);}}
-            gtag('js', new Date());
-            gtag('config', '{GOOGLE_ANALYTICS_ID}');
-        `;
-        document.head.appendChild(script2);
-    }}
-}})();
-</script>
-"""
-
-st.markdown(ga_head_injection, unsafe_allow_html=True)
+            var script2 = parentDoc.createElement('script');
+            script2.innerHTML = `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){{dataLayer.push(arguments);}}
+                gtag('js', new Date());
+                gtag('config', '{GOOGLE_ANALYTICS_ID}');
+            `;
+            parentDoc.head.appendChild(script2);
+        }}
+    }})();
+    </script>
+    """,
+    height=0,
+    width=0,
+)
 
 #------------------------------------------------------------------
 # Función para convertir la imagen local a Base64 y usarla en CSS
